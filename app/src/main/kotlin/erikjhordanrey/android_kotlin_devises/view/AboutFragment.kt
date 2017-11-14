@@ -20,40 +20,52 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.jakewharton.rxbinding2.widget.RxCompoundButton
 import erikjhordanrey.android_kotlin_devises.R
+import io.reactivex.internal.operators.observable.ObservableEmpty
 import kotlinx.android.synthetic.main.about_fragment.*
+import kotlinx.android.synthetic.main.about_fragment.view.*
+import java.util.*
 
 
 class AboutFragment : Fragment() {
 
-  companion object {
 
-    const val PROJECT_BLOG_POST = "https://erikcaffrey.github.io/ANDROID-kotlin-arch-components/"
-    const val PROJECT_SOURCE_CODE = "https://github.com/erikcaffrey/Android-Architecture-Components-Kotlin"
+    companion object {
 
-    fun newInstance() = AboutFragment()
-  }
+        const val PROJECT_BLOG_POST = "https://erikcaffrey.github.io/ANDROID-kotlin-arch-components/"
+        const val PROJECT_SOURCE_CODE = "https://github.com/erikcaffrey/Android-Architecture-Components-Kotlin"
 
-  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-    return inflater.inflate(R.layout.about_fragment, container, false)
-  }
+        fun newInstance() = AboutFragment()
+    }
 
-  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    super.onViewCreated(view, savedInstanceState)
-    initUI()
-  }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        Log.d("LOG", "created やで")
+        val view = inflater.inflate(R.layout.about_fragment, container, false)
+        val obs = RxCompoundButton.checkedChanges(view.switch2)
+        obs.subscribe {
+            Log.d("LOG", "${it!!}")
+        }
+        return inflater.inflate(R.layout.about_fragment, container, false)
+    }
 
-  private fun initUI() {
-    show_me_post.setOnClickListener { startActivityActionView(PROJECT_BLOG_POST) }
-    show_me_code.setOnClickListener { startActivityActionView(PROJECT_SOURCE_CODE) }
-  }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initUI()
+    }
+
+    private fun initUI() {
+        show_me_post.setOnClickListener { startActivityActionView(PROJECT_BLOG_POST) }
+        show_me_code.setOnClickListener { startActivityActionView(PROJECT_SOURCE_CODE) }
+    }
 
 
-  private fun startActivityActionView(url: String) {
-    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
-  }
+    private fun startActivityActionView(url: String) {
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+    }
 }
 
