@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
+import android.view.View
 
 
 open class BaseFragment : Fragment() {
@@ -12,6 +13,26 @@ open class BaseFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d("sample", "BaseFragment.onCreate")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d("sample", "BaseFragment.onStart")
+    }
+
+    override fun onAttachFragment(childFragment: Fragment?) {
+        super.onAttachFragment(childFragment)
+        Log.d("sample", "BaseFragment.onAttachFragment")
+    }
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        Log.d("sample", "BaseFragment.onViewCreated")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("sample", "BaseFragment.onResume")
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -33,9 +54,4 @@ open class BaseFragment : Fragment() {
         super.onPause()
         Log.d("sample", "BaseFragment.onPause")
     }
-
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        Log.d("sample", "BaseActivity.onCreate")
-//    }
 }

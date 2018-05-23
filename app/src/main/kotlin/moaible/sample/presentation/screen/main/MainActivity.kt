@@ -29,8 +29,13 @@ class MainActivity : BaseActivity() {
         Log.d("sample", "MainActivity.onCreate")
         setContentView(R.layout.activity_main)
         if (savedInstanceState == null) {
+            // NOTE:
+            // onCreateでsavedInstanceStateを見ずにfragmentをaddすると
+            //
+            // https://qiita.com/kirimin/items/59fcb626ee5a315a3684
             supportFragmentManager.beginTransaction()
-                    .add(R.id.content, MainFragment())
+                    .add(R.id.content, MainFragment.newInstance("initial"))
+                    .addToBackStack("test")
                     .commit()
         }
     }
