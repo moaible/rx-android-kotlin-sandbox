@@ -19,7 +19,7 @@ package moaible.sample.presentation.screen.main
 import android.os.Bundle
 import android.util.Log
 import moaible.sample.R
-import moaible.sample.presentation.common.BaseActivity
+import moaible.sample.presentation.base.BaseActivity
 
 
 class MainActivity : BaseActivity() {
@@ -29,10 +29,9 @@ class MainActivity : BaseActivity() {
         Log.d("sample", "MainActivity.onCreate")
         setContentView(R.layout.activity_main)
         if (savedInstanceState == null) {
-//            TODO("not implemented")
+            supportFragmentManager.beginTransaction()
+                    .add(R.id.content, MainFragment())
+                    .commit()
         }
-        supportFragmentManager.beginTransaction()
-                .add(R.id.content, MainFragment())
-                .commit()
     }
 }

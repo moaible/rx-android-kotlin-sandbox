@@ -1,18 +1,15 @@
 package moaible.sample.presentation.screen.main
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import moaible.sample.R
+import moaible.sample.presentation.base.BaseFragment
 
-class MainFragment : Fragment() {
-
-    init {
-        
-    }
+class MainFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
+        return inflater?.inflate(R.layout.main_fragment, container, false)
     }
 }

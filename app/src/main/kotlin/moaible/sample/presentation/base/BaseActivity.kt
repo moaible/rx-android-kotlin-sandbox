@@ -1,9 +1,9 @@
-package moaible.sample.presentation.common
+package moaible.sample.presentation.base
 
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import moaible.sample.R
 
 
 open class BaseActivity : AppCompatActivity() {
@@ -11,6 +11,12 @@ open class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d("sample", "BaseActivity.onCreate")
+    }
+
+    override fun onAttachFragment(fragment: Fragment?) {
+        super.onAttachFragment(fragment)
+        Log.d("sample", "BaseActivity.onAttachFragment")
+        Log.d("sample", fragment.toString())
     }
 
     override fun onStart() {
