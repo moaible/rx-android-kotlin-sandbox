@@ -18,13 +18,28 @@ package moaible.sample.presentation
 
 import android.app.Activity
 import android.app.Application
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import com.google.android.gms.analytics.Tracker
+import module.analytics.GoogleAnalyticsSendable
 
-class App : Application() {
+class App : Application(), GoogleAnalyticsSendable {
+
+    companion object {
+        private var sInstance: App? = null
+        val instance: App
+            get() = sInstance!!
+    }
+
+    override var analyticsTracker: Tracker? = null
+    override fun analyticsContext(): Context {
+        return this
+    }
 
     override fun onCreate() {
         super.onCreate()
+        sInstance = this
         Log.d("sample", "App.onCreate")
         registerActivityLifecycleCallbacks(AppLifecycleCallbacks())
     }

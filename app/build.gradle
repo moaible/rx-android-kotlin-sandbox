@@ -69,13 +69,9 @@ dependencies {
     /**
      * Google Playサービス
      */
-    //noinspection GradleDependency
     implementation 'com.google.android.gms:play-services-auth:11.0.1'
-    //noinspection GradleDependency
     implementation 'com.google.android.gms:play-services-analytics:11.0.1'
-    //noinspection GradleDependency
     implementation 'com.google.android.gms:play-services-location:11.0.1'
-    //noinspection GradleDependency
     implementation 'com.google.android.gms:play-services-maps:11.0.1'
 
     /**
