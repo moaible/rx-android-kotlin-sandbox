@@ -23,8 +23,9 @@ import android.os.Bundle
 import android.util.Log
 import com.google.android.gms.analytics.Tracker
 import module.analytics.GoogleAnalyticsSendable
+import module.analytics.GoogleAnalyticsSender
 
-class App : Application(), GoogleAnalyticsSendable {
+class App : Application() {
 
     companion object {
         private var sInstance: App? = null
@@ -32,10 +33,7 @@ class App : Application(), GoogleAnalyticsSendable {
             get() = sInstance!!
     }
 
-    override var analyticsTracker: Tracker? = null
-    override fun analyticsContext(): Context {
-        return this
-    }
+    var analyticsSender = GoogleAnalyticsSender(this)
 
     override fun onCreate() {
         super.onCreate()

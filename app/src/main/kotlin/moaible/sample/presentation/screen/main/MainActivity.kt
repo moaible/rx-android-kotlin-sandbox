@@ -31,11 +31,10 @@ class MainActivity : BaseActivity() {
         if (savedInstanceState == null) {
             // NOTE:
             // onCreateでsavedInstanceStateを見ずにfragmentをaddすると
-            //
+            // Fragmentが増殖するケースがあるためsavedInstanceStateをチェックしている
             // https://qiita.com/kirimin/items/59fcb626ee5a315a3684
             supportFragmentManager.beginTransaction()
-                    .add(R.id.content, MainFragment.newInstance("initial"))
-                    .addToBackStack("test")
+                    .replace(R.id.content, MainFragment.newInstance("initial"))
                     .commit()
         }
     }
