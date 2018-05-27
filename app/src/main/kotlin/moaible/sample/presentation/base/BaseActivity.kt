@@ -4,13 +4,21 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import io.reactivex.processors.PublishProcessor
+import moaible.sample.presentation.App
+import java.util.concurrent.TimeUnit
 
 
 open class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("sample", "BaseActivity.onCreate")
+        supportFragmentManager.addOnBackStackChangedListener {
+            val fragments = supportFragmentManager?.fragments ?: arrayListOf()
+            (fragments.lastOrNull { it.isVisible } as? BaseFragment)?.getScreenName()?.let {
+                App.instance.analyticsSender.sendScreenTracking(it)
+            }
+        }
     }
 
     override fun onAttachFragment(fragment: Fragment?) {
